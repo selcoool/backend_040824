@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 
 
 app.get('/', (req, res) => {
-  res.send('BACKEND CAP NHAT MOI UPDATED 111')
+  res.send('BACKEND CAP NHAT MOI UPDATED 1121')
 })
 
 app.get('/sua', (req, res) => {
