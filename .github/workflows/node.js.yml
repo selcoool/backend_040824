@@ -56,12 +56,12 @@ jobs:
             cd /root/backend_040824
       
             git pull
-            docker-compose -f docker-compose-api-backend_040824.yml -d --build         
+            docker-compose -f docker-compose-api-backend_040824.yml up -d --build         
           else          
             echo "Không hề tồn tại thư mục dự án"
             mkdir -p /root/backend_040824
             cd /root/backend_040824
-            
+
             git clone https://github.com/${{ github.repository }} /root/backend_040824
             docker-compose -f docker-compose-api-backend_040824.yml up -d
           fi
