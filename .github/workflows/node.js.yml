@@ -33,49 +33,33 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}  # Sử dụng nếu bạn dùng mật khẩu cho SSH
         # key: ${{ secrets.VPS_SSH_KEY }}  # Sử dụng nếu bạn dùng khóa SSH
-        script: |
-          # echo "Checking if the project directory exists..."
-          # if [ -d "/root/backend_040824" ]; then
-          #   echo "Tồn tại thư mục dự án"
-          #   cd /root/backend_040824
-          #   git pull
-          #   docker-compose -f docker-compose-api-backend_040824.yml -d --build         
-          # else          
-          #   echo "Không hề tồn tại thư mục dự án"
-          #   mkdir -p /root/backend_040824
-          #   cd /root/backend_040824
-          #   git clone https://github.com/${{ github.repository }} /root/backend_040824
-          #   docker-compose -f docker-compose-api-backend_040824.yml up -d
-          # fi
-          # echo "Hoàn thành công việc update API backend_040824. Chúc mừng bạn đã hoàn thành"
-
-
-          echo "Checking if the project directory exists..."
-          if [ -d "/root/backend_040824" ]; then
-            echo "Tồn tại thư mục dự án"
-            cd /root/backend_040824
-      
-            git pull
-            docker-compose -f docker-compose-api-backend_040824.yml up -d --build         
-          else          
-            echo "Không hề tồn tại thư mục dự án"
-            mkdir -p /root/backend_040824
-            cd /root/backend_040824
-
-            git clone https://github.com/${{ github.repository }} /root/backend_040824
-            docker-compose -f docker-compose-api-backend_040824.yml up -d
-          fi
-          echo "Hoàn thành công việc update API backend_040824. Chúc mừng bạn đã hoàn thành"
-
         # script: |
-        #   echo "Xoa thu muc du an"
-        #   rm -rf /root/rent_room
-        #   echo "Xoa images and container"
+        #   echo "Checking if the project directory exists..."
+        #   if [ -d "/root/backend_040824" ]; then
+        #     echo "Tồn tại thư mục dự án"
+        #     cd /root/backend_040824
+      
+        #     git pull
+        #     docker-compose -f docker-compose-api-backend_040824.yml up -d --build         
+        #   else          
+        #     echo "Không hề tồn tại thư mục dự án"
+        #     mkdir -p /root/backend_040824
+        #     cd /root/backend_040824
+
+        #     git clone https://github.com/${{ github.repository }} /root/backend_040824
+        #     docker-compose -f docker-compose-api-backend_040824.yml up -d
+        #   fi
+        #   echo "Hoàn thành công việc update API backend_040824. Chúc mừng bạn đã hoàn thành"
+
+        script: |
+          echo "Xoa thu muc du an"
+          rm -rf /root/backend_040824
+          echo "Xoa images and container"
           
-        #   docker stop $(docker ps -aq) || true
-        #   docker rm $(docker ps -aq) || true
-        #   docker rmi $(docker images -q) || true
-        #   docker-compose down
-        #   docker system prune -a -f
-        #   sudo systemctl restart docker
-        #   echo "Xoa du an 1"
+          docker stop $(docker ps -aq) || true
+          docker rm $(docker ps -aq) || true
+          docker rmi $(docker images -q) || true
+          docker-compose -f docker-compose-api-backend_040824.yml down
+          docker system prune -a -f
+          sudo systemctl restart docker
+          echo "Xoa du an 1"
