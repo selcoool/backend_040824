@@ -32,7 +32,7 @@ app.get('/test', async(req, res) => {
   //   }
   //  });
 
-   const inf= await prisma.binh_luan.findMany();
+   const inf= await prisma.Users.findMany();
 //     prisma.hinh_anh.findMany();
 // //   res.send('Hello World!')
 // console.log('sssssssss',inf);

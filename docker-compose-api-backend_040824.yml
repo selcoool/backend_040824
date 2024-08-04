@@ -1,107 +1,16 @@
 services:
-  db:
-    image: mysql:latest
-    restart: always
-    container_name: mysql_container
-    env_file:
-      - .env
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - rent_room_network
-    # environment:
-      # You can uncomment these if you want to define directly in the file or keep them in .env
-      # MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      # MYSQL_DATABASE: test_data
-
   api_node:
     container_name: api_node
     restart: unless-stopped
     build:
-      context: .
-      dockerfile: Dockerfile # Ensure you have a Dockerfile in the context directory
+      context: ./
     ports:
       - "9000:9000"
     networks:
       - rent_room_network
     env_file:
-      - .env
-    depends_on:
-      - db
-
-volumes:
-  db_data:
+      - ./.env
 
 networks:
   rent_room_network:
     driver: bridge
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# services:
-#   db:
-#     image: mysql:latest
-#     restart: always
-#     container_name: mysql_container
-#     env_file:
-#       - ./api_node/.env
-#     # environment:
-#     #   MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#     #   MYSQL_DATABASE: test_data
-#     ports:
-#       - "3306:3306"
-#     volumes:
-#       - db_data:/var/lib/mysql
-#     networks:
-#       - rent_room_network
-
-#   api_node:
-#     container_name: api_node
-#     restart: unless-stopped
-#     build:
-#       context: ./api_node
-#     ports:
-#       - "9000:9000"
-#     networks:
-#       - rent_room_network
-#     env_file:
-#       - ./api_node/.env
-#     depends_on:
-#       - db
-
-#   ui_react:
-#     container_name: ui_react
-#     restart: unless-stopped
-#     build:
-#       context: ./ui_react
-#     ports:
-#       - "4000:4000"
-#     networks:
-#       - rent_room_network
-#     env_file:
-#       - ./ui_react/.env
-#     depends_on:
-#       - api_node
-    
-
-  
-
-# volumes:
-#   db_data:
-
-# networks:
-#   rent_room_network:
-#     driver: bridge
