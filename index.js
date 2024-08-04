@@ -4,7 +4,7 @@
 // const { PrismaClient } = require('@prisma/client');
 import express from 'express';
 import cors from 'cors';
-// import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const app = express()
 var  corsOptions  = {
@@ -22,23 +22,23 @@ app.use(express.json({ limit: '30mb' }));
 app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
-// app.get('/test', async(req, res) => {
+app.get('/test', async(req, res) => {
 
-//   //  const inf= await prisma.hinh_anh.findMany({
-//   //   where:{
-//   //     hinh_id:1
-//   //   }
-//   //  });
+  //  const inf= await prisma.hinh_anh.findMany({
+  //   where:{
+  //     hinh_id:1
+  //   }
+  //  });
 
-//    const inf= await prisma.binh_luan.findMany();
-// //     prisma.hinh_anh.findMany();
-// // //   res.send('Hello World!')
-// // console.log('sssssssss',inf);
-// // return inf;
-// return res.status(200).json(inf)
-// })
+   const inf= await prisma.binh_luan.findMany();
+//     prisma.hinh_anh.findMany();
+// //   res.send('Hello World!')
+// console.log('sssssssss',inf);
+// return inf;
+return res.status(200).json(inf)
+})
 
 
 app.get('/', (req, res) => {
