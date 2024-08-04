@@ -10,13 +10,13 @@ COPY package*.json ./
 RUN npm install
 
 # Copy Prisma schema directory
-# COPY prisma ./prisma/
+COPY prisma ./prisma/
 
 # Copy the rest of the application
 COPY . .
 
-# # Generate Prisma client
-# RUN npx prisma generate
+# Generate Prisma client
+RUN npx prisma generate
 
 # # Run Prisma migration or pull (ensure the database is reachable)
 # RUN npx prisma db pull

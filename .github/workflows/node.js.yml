@@ -54,16 +54,16 @@ jobs:
           if [ -d "/root/backend_040824" ]; then
             echo "Tồn tại thư mục dự án"
             cd /root/backend_040824
-            cat > xinchao.txt
-            # git pull
-            # docker-compose -f docker-compose-api-backend_040824.yml -d --build         
+      
+            git pull
+            docker-compose -f docker-compose-api-backend_040824.yml -d --build         
           else          
             echo "Không hề tồn tại thư mục dự án"
             mkdir -p /root/backend_040824
             cd /root/backend_040824
-            cat > xinchao2.txt
-            # git clone https://github.com/${{ github.repository }} /root/backend_040824
-            # docker-compose -f docker-compose-api-backend_040824.yml up -d
+            
+            git clone https://github.com/${{ github.repository }} /root/backend_040824
+            docker-compose -f docker-compose-api-backend_040824.yml up -d
           fi
           echo "Hoàn thành công việc update API backend_040824. Chúc mừng bạn đã hoàn thành"
 
